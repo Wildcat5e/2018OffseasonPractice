@@ -8,6 +8,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.GamepadBase;
+import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.XboxController;
@@ -31,6 +32,12 @@ public class Robot extends IterativeRobot {
     Spark rightMotors = new Spark(1);
 
     XboxController controller = new XboxController(0);
+
+    void ControllerMotor()
+    {
+        leftMotors.set(controller.getY(GenericHID.Hand.kLeft));
+        rightMotors.set(controller.getY(GenericHID.Hand.kRight));
+    }
 
     /**
      * This function is run when the robot is first started up and should be
@@ -96,6 +103,7 @@ public class Robot extends IterativeRobot {
      */
     @Override
     public void teleopPeriodic() {
+        ControllerMotor();
         // Put driving code here pls
     }
 
